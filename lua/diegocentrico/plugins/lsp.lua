@@ -38,6 +38,7 @@ return {
 				"tailwindcss", -- Tailwind CSS
 				"cssls", -- CSS
                 "jdtls", -- Java
+                "gopls", -- Go
 			},
 			handlers = {
 				function(server_name) -- default handler (optional)
@@ -103,6 +104,25 @@ return {
 						},
 					})
 				end,
+
+                ["gopls"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.gopls.setup({
+                        capabilities = capabilities,
+                        cmd = { "gopls" },
+                        filetypes = { "go", "gomod", "gowork", "gotmpl" },
+                        root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
+                        settings = {
+                            gopls = {
+                                analyses = {
+                                    unusedparams = true,
+                                    shadow = true,
+                                },
+                                staticcheck = true,
+                            },
+                        },
+                    })
+                end,
 
                 ["jdtls"] = function()
                     local lspconfig = require("lspconfig")
