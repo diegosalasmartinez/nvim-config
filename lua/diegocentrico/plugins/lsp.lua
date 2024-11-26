@@ -37,6 +37,7 @@ return {
 				"html", -- HTML
 				"tailwindcss", -- Tailwind CSS
 				"cssls", -- CSS
+                "jdtls", -- Java
 			},
 			handlers = {
 				function(server_name) -- default handler (optional)
@@ -102,6 +103,26 @@ return {
 						},
 					})
 				end,
+
+                ["jdtls"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.jdtls.setup({
+                        capabilities = capabilities,
+                        cmd = { "jdtls" },
+                        root_dir = lspconfig.util.root_pattern(".git", "pom.xml", "build.gradle"),
+                        settings = {
+                            java = {
+                                format = {
+                                    settings = {
+                                        url = "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml", -- Formato de código
+                                    },
+                                },
+                                signatureHelp = { enabled = true },
+                                contentProvider = { preferred = "fernflower" },
+                            },
+                        },
+                    })
+                end,
 
 				["denols"] = function()
 					local lspconfig = require("lspconfig")
