@@ -41,10 +41,10 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- Add console log line
-vim.keymap.set("n", "<leader>ee", "oconsole.log('[DIEGO]')")
+vim.keymap.set("n", "<leader>ee", "oconsole.log('[DIEGO] ')<Esc>hi")
 
 -- Add if block
-vim.keymap.set("n", "<leader>ei", "oif (true) {\n}<Esc>O")
+vim.keymap.set("n", "<leader>ei", "oif () {\n\n}<Esc>kkf(li")
 
 -- Add try/catch block
 vim.keymap.set("n", "<leader>et", "otry {\n} catch (e) {\n}<Esc>kO")
