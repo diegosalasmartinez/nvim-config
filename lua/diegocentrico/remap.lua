@@ -44,7 +44,8 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>ee", "oconsole.log('[DIEGO] ')<Esc>hi")
 
 -- Add if block
-vim.keymap.set("n", "<leader>ei", "oif () {\n\n}<Esc>kkf(li")
+vim.keymap.set("n", "<leader>eif", "oif () {\n\n}<Esc>kkf(li")
+vim.keymap.set("n", "<leader>eir", "oif () return<Esc>0f(li")
 
 -- Add try/catch block
 vim.keymap.set("n", "<leader>et", "otry {\n} catch (e) {\n}<Esc>kO")
