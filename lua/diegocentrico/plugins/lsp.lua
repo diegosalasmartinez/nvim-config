@@ -40,6 +40,7 @@ return {
 				"jdtls", -- Java
 				"gopls", -- Go
 				"pyright", -- Python
+				"rust_analyzer", -- Rust
 			},
 			handlers = {
 				function(server_name) -- default handler (optional)
@@ -214,6 +215,21 @@ return {
 									autoSearchPaths = true,
 									useLibraryCodeForTypes = true,
 								},
+							},
+						},
+					})
+				end,
+
+				["rust_analyzer"] = function()
+					local lspconfig = require("lspconfig")
+					local util = require("lspconfig.util")
+					lspconfig.rust_analyzer.setup({
+						capabilities = capabilities,
+						root_dir = util.root_pattern("Cargo.toml", "rust-project.json"),
+						settings = {
+							["rust-analyzer"] = {
+								procMacro = { enable = true },
+								cargo = { allFeatures = true, buildScripts = { enable = true } },
 							},
 						},
 					})
