@@ -39,6 +39,9 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 -- Regex replace
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>sr", [[:%s//gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>sg", "<cmd>Telescope live_grep<cr>")
+vim.keymap.set("n", "<leader>sw", "<cmd>Telescope grep_string<cr>")
 
 -- Add console log line
 vim.keymap.set("n", "<leader>ee", "oconsole.log('[DIEGO] ')<Esc>hi")
